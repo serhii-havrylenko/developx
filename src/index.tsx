@@ -11,7 +11,7 @@ import * as React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-// import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux';
 
 import Routes from '#components/Routes';
 import env from '#env';
@@ -35,9 +35,9 @@ const renderApp = (Component: React.ComponentType): void => {
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <ApolloProvider client={client}>
-          {/* <ConnectedRouter history={history}> */}
-          <Component />
-          {/* </ConnectedRouter> */}
+          <ConnectedRouter history={history}>
+            <Component />
+          </ConnectedRouter>
         </ApolloProvider>
       </Provider>
     </MuiThemeProvider>,

@@ -18,15 +18,14 @@ import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { renderToNodeStream } from 'react-dom/server';
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import { Provider } from 'react-redux';
-// import { ConnectedRouter, push } from 'react-router-redux';
-import { push } from 'react-router-redux';
+import { ConnectedRouter, push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 import { Store } from 'redux';
 import { ServerStyleSheet } from 'styled-components';
 
 import Routes from '#components/Routes';
 import env from '#env';
 import configureStore from '#store';
-import { StaticRouter } from 'react-router';
 
 const stringify = (field: string, obj: object) =>
   `window.${field}=${JSON.stringify(obj).replace(/</g, '\\u003c')};`;
@@ -42,7 +41,7 @@ interface IRenderAppArgs {
 const renderApp = async ({
   sheet,
   store,
-  // history,
+  history,
   client,
   sheetsRegistry,
 }: IRenderAppArgs): Promise<
@@ -60,11 +59,9 @@ const renderApp = async ({
         <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
           <Provider store={store}>
             <ApolloProvider client={client}>
-              {/* <ConnectedRouter history={history}> */}
-              <StaticRouter>
+              <ConnectedRouter history={history}>
                 <Routes />
-                {/* </ConnectedRouter> */}
-              </StaticRouter>
+              </ConnectedRouter>
             </ApolloProvider>
           </Provider>
         </MuiThemeProvider>
@@ -72,7 +69,6 @@ const renderApp = async ({
     </div>,
   );
 
-  console.log(app);
   await getDataFromTree(app);
 
   return app;

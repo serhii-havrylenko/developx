@@ -1,5 +1,5 @@
 /**
- * develop.env.ts
+ * development.env.ts
  * publick available production configuration
  */
 export default {

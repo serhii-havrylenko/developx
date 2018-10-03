@@ -24,14 +24,14 @@ const configure = (
 ): Store<{}> => {
   let middleware = history && applyMiddleware(routerMiddleware(history), thunk);
 
-  if (middleware && process.env.NODE_ENV === 'develop') {
+  if (middleware && process.env.NODE_ENV === 'development') {
     middleware = composeWithDevTools(middleware);
   }
   const store = history
     ? createStore(rootReducer, initialState, middleware)
     : createStore(rootReducer, initialState);
 
-  if (process.env.NODE_ENV === 'develop' && module.hot) {
+  if (process.env.NODE_ENV === 'development' && module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers', () => {
       const nextReducer = require('./reducers').default;

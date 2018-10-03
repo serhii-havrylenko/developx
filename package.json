@@ -8,12 +8,12 @@
     "lint:ts-prod": "tslint --project tsconfig.json --config tslint.prod.json 'src/**/*.ts{,x}' --exclude '**/*.{spec,story,d}.ts{,x}'",
     "lint:ts-test": "tslint --project tsconfig.json --config tslint.test.json 'src/**/*.{spec,story}.ts{,x}' --exclude '**/*.d.ts'",
     "analyze": "NODE_ENV=analyze webpack --config webpack.config.babel.js -p",
-    "storybook": "NODE_ENV=develop start-storybook -p 9001",
+    "storybook": "NODE_ENV=development start-storybook -p 9001",
     "tdd": "jest --colors --watch --notify ",
     "jest": "jest",
     "prebuild": "rm -rf ./dist",
     "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
-    "start": "NODE_ENV=develop nodemon src/server/index.ts --config nodemon.json --",
+    "start": "NODE_ENV=development nodemon src/server/index.ts --config nodemon.json --",
     "start:prod": "NODE_ENV=production node ./dist/server.js"
   },
   "keywords": [
@@ -124,7 +124,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "^4.0.8",
+    "react-router-redux": "^5.0.0-alpha.9",
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",

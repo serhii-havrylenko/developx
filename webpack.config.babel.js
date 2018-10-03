@@ -17,12 +17,18 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 export default () => [
   {
     ...resolver,
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     context: SRC_DIR,
     target: 'web',
-    devtool: process.env.NODE_ENV !== 'production' ? 'cheap-module-eval-source-map' : false,
+    devtool:
+      process.env.NODE_ENV !== 'production'
+        ? 'cheap-module-eval-source-map'
+        : false,
     entry: {
       client: [
-        ...(process.env.NODE_ENV !== 'production' && ['webpack-hot-middleware/client?reload=true']),
+        ...(process.env.NODE_ENV !== 'production' && [
+          'webpack-hot-middleware/client?reload=true',
+        ]),
         `${SRC_DIR}/index.tsx`,
       ],
     },
@@ -52,8 +58,11 @@ export default () => [
       ],
     },
     optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
       splitChunks: {
-        chunks: 'async',
+        chunks: 'all',
         minSize: 30000,
         maxSize: 0,
         minChunks: 1,
@@ -63,37 +72,29 @@ export default () => [
         name: true,
         cacheGroups: {
           vendors: {
+            name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
-            priority: -10
+            priority: -10,
           },
           default: {
             minChunks: 2,
             priority: -20,
-            reuseExistingChunk: true
-          }
-        }
-      }
+            reuseExistingChunk: true,
+          },
+        },
+      },
     },
     plugins: [
       new EnvironmentPlugin({
-        NODE_ENV: 'develop',
+        NODE_ENV: 'development',
         BABEL_ENV: 'client',
       }),
       new CheckerPlugin(),
-      ...(process.env.NODE_ENV === 'develop' && [new HotModuleReplacementPlugin()]),
+      ...(process.env.NODE_ENV === 'development' && [
+        new HotModuleReplacementPlugin(),
+      ]),
       new NoEmitOnErrorsPlugin(),
-      // new optimize.CommonsChunkPlugin({
-      //   name: 'vendor',
-      //   minChunks(module) {
-      //     return module.context && module.context.indexOf('node_modules') !== -1;
-      //   },
-      // }),
-      // new optimize.CommonsChunkPlugin({
-      //   name: 'manifest',
-      //   minChunks: Infinity,
-      // }),
-      // ...(process.env.NODE_ENV === 'analyze' && [new BundleAnalyzerPlugin()]),
-      // ...(process.env.NODE_ENV === 'production' && [new UglifyPlugin()]),
+      // ...(process.env.NODE_ENV === 'analyze' && [new BundleAnalyzerPlugin()])
     ],
   },
   // ...(process.env.NODE_ENV === 'production' && [

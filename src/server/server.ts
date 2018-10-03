@@ -15,7 +15,7 @@ const app = express();
 app.use(cors);
 app.use(helmet());
 
-if (process.env.NODE_ENV === 'develop') {
+if (process.env.NODE_ENV === 'development') {
   const [webapckConfig] = config();
   const compiler = webpack(webapckConfig as object);
   app.use(
