@@ -51,6 +51,29 @@ export default () => [
         },
       ],
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'async',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      }
+    },
     plugins: [
       new EnvironmentPlugin({
         NODE_ENV: 'develop',
@@ -59,59 +82,59 @@ export default () => [
       new CheckerPlugin(),
       ...(process.env.NODE_ENV === 'develop' && [new HotModuleReplacementPlugin()]),
       new NoEmitOnErrorsPlugin(),
-      new optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks(module) {
-          return module.context && module.context.indexOf('node_modules') !== -1;
-        },
-      }),
-      new optimize.CommonsChunkPlugin({
-        name: 'manifest',
-        minChunks: Infinity,
-      }),
-      ...(process.env.NODE_ENV === 'analyze' && [new BundleAnalyzerPlugin()]),
-      ...(process.env.NODE_ENV === 'production' && [new UglifyPlugin()]),
+      // new optimize.CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   minChunks(module) {
+      //     return module.context && module.context.indexOf('node_modules') !== -1;
+      //   },
+      // }),
+      // new optimize.CommonsChunkPlugin({
+      //   name: 'manifest',
+      //   minChunks: Infinity,
+      // }),
+      // ...(process.env.NODE_ENV === 'analyze' && [new BundleAnalyzerPlugin()]),
+      // ...(process.env.NODE_ENV === 'production' && [new UglifyPlugin()]),
     ],
   },
-  ...(process.env.NODE_ENV === 'production' && [
-    {
-      ...resolver,
-      entry: {
-        server: `${SRC_DIR}/server/index.ts`,
-      },
-      output: {
-        path: DIST_DIR,
-        filename: '[name].js',
-      },
-      target: 'node',
-      node: {
-        __filename: false,
-        __dirname: false,
-      },
-      externals: [NodeExt()],
-      module: {
-        rules: [
-          {
-            test: /.js$/,
-            loaders: ['babel-loader'],
-            exclude: path.resolve(__dirname, 'node_modules'),
-          },
-          {
-            test: /.tsx?$/,
-            loaders: ['awesome-typescript-loader'],
-            exclude: path.resolve(__dirname, 'node_modules'),
-            include: path.resolve(__dirname, 'src'),
-          },
-        ],
-      },
-      plugins: [
-        new EnvironmentPlugin({
-          BABEL_ENV: 'server',
-        }),
-        new CheckerPlugin(),
-        new NoEmitOnErrorsPlugin(),
-        new UglifyPlugin(),
-      ],
-    },
-  ]),
+  // ...(process.env.NODE_ENV === 'production' && [
+  //   {
+  //     ...resolver,
+  //     entry: {
+  //       server: `${SRC_DIR}/server/index.ts`,
+  //     },
+  //     output: {
+  //       path: DIST_DIR,
+  //       filename: '[name].js',
+  //     },
+  //     target: 'node',
+  //     node: {
+  //       __filename: false,
+  //       __dirname: false,
+  //     },
+  //     externals: [NodeExt()],
+  //     module: {
+  //       rules: [
+  //         {
+  //           test: /.js$/,
+  //           loaders: ['babel-loader'],
+  //           exclude: path.resolve(__dirname, 'node_modules'),
+  //         },
+  //         {
+  //           test: /.tsx?$/,
+  //           loaders: ['awesome-typescript-loader'],
+  //           exclude: path.resolve(__dirname, 'node_modules'),
+  //           include: path.resolve(__dirname, 'src'),
+  //         },
+  //       ],
+  //     },
+  //     plugins: [
+  //       // new EnvironmentPlugin({
+  //       //   BABEL_ENV: 'server',
+  //       // }),
+  //       // new CheckerPlugin(),
+  //       // new NoEmitOnErrorsPlugin(),
+  //       // new UglifyPlugin(),
+  //     ],
+  //   },
+  // ]),
 ];

@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'develop') {
   const compiler = webpack(webapckConfig as object);
   app.use(
     webpackDevMiddleware(compiler, {
-      noInfo: true,
+      // noInfo: true,
       publicPath: get(webapckConfig, 'output.publicPath', '/public'),
       stats: {
         assets: false,

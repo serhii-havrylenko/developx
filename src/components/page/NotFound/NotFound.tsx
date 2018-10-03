@@ -2,7 +2,7 @@
  * Provides root component for non-existing pages
  * @module #page/NotFound
  */
-import React from 'react';
+import * as React from 'react';
 
 /**
  * Root component for not found error page

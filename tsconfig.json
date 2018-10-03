@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "module": "esnext",
     "target": "esnext",
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -14,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "esnext"],
     "baseUrl": "./",
     "paths": {
       "*": ["node_modules/*", "src/types/*"],

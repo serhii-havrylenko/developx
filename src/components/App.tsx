@@ -3,10 +3,10 @@
  * define application viewport component
  * @children {React.Node} - any page to display
  */
-import { default as gql } from 'graphql-tag';
+// import { default as gql } from 'graphql-tag';
 import { get } from 'lodash';
-import React from 'react';
-import { graphql } from 'react-apollo';
+import * as React from 'react';
+// import { graphql } from 'react-apollo';
 import Helmet from 'react-helmet';
 import { compose } from 'recompose';
 
@@ -20,11 +20,11 @@ import Button from '#atom/Button';
 import withStyle from '#components/App.sc';
 import withCleanup from '#hoc/withCleanup';
 
-const query = gql`
-  query Query {
-    hello
-  }
-`;
+// const query = gql`
+//   query Query {
+//     hello
+//   }
+// `;
 
 interface IAppProps {
   className?: string;
@@ -48,7 +48,7 @@ const App: React.SFC<IAppProps> = ({ children, className, data }) => (
         <IconButton color="inherit" aria-label="Menu">
           <Menu />
         </IconButton>
-        <Typography type="title" color="inherit" style={{ flex: 1 }}>
+        <Typography variant="title" color="inherit" style={{ flex: 1 }}>
           App title says and: {get(data, 'hello', 'no data')}
         </Typography>
       </Toolbar>
@@ -65,9 +65,9 @@ const App: React.SFC<IAppProps> = ({ children, className, data }) => (
   </div>
 );
 
-const withGql = graphql(query);
-export default compose(
+// const withGql = graphql(query);
+export default compose<IAppProps, Partial<IAppProps>>(
   withCleanup,
-  withGql,
+  // withGql,
   withStyle,
 )(App);

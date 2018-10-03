@@ -1,14 +1,10 @@
 // @flow
-import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import * as React from 'react';
 
-import Button from './Button';
+import Button from '#atom/Button';
 
 const stories = storiesOf('StepItem', module);
-stories.addDecorator(withKnobs);
 
-stories.add('simple btn', () => (
-  <Button onClick={action('clicked')}/>
-));
+stories.add('simple btn', () => <Button onClick={action('clicked')} />);

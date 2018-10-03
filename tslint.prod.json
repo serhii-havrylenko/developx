@@ -1,6 +1,23 @@
 {
   "extends": ["./tslint.json"],
   "rules": {
-    "no-implicit-dependencies": true
+    "no-implicit-dependencies": [
+      true,
+      [
+        "#app",
+        "#atom",
+        "#components",
+        "#constants",
+        "#containers",
+        "#env",
+        "#hoc",
+        "#molecule",
+        "#organism",
+        "#page",
+        "#public",
+        "#store",
+        "#template"
+      ]
+    ]
   }
 }

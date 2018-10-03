@@ -3,7 +3,7 @@
  * @module #page/Home
  */
 import Button from '#atom/Button';
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 // tslint:disable-next-line: no-console

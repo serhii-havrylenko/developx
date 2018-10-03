@@ -1,7 +1,6 @@
-// @format
 import createMemoryHistory from 'history/createMemoryHistory';
 import fetch from 'isomorphic-fetch';
-import React from 'react';
+import * as React from 'react';
 import Helmet from 'react-helmet';
 import JssProvider from 'react-jss/lib/JssProvider';
 
@@ -18,13 +17,16 @@ import { History } from 'history';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { renderToNodeStream } from 'react-dom/server';
 import { SheetsRegistry } from 'react-jss/lib/jss';
-import { Provider, Store } from 'react-redux';
-import { ConnectedRouter, push } from 'react-router-redux';
+import { Provider } from 'react-redux';
+// import { ConnectedRouter, push } from 'react-router-redux';
+import { push } from 'react-router-redux';
+import { Store } from 'redux';
 import { ServerStyleSheet } from 'styled-components';
 
 import Routes from '#components/Routes';
 import env from '#env';
 import configureStore from '#store';
+import { StaticRouter } from 'react-router';
 
 const stringify = (field: string, obj: object) =>
   `window.${field}=${JSON.stringify(obj).replace(/</g, '\\u003c')};`;
@@ -39,13 +41,16 @@ interface IRenderAppArgs {
 
 const renderApp = async ({
   sheet,
-  sheetsRegistry,
   store,
-  history,
+  // history,
   client,
-}: IRenderAppArgs): Promise<React.ReactElement<{}>> => {
+  sheetsRegistry,
+}: IRenderAppArgs): Promise<
+  React.ReactElement<{ sheet: ServerStyleSheet }>
+> => {
   const generateClassName = createGenerateClassName();
   const theme = createMuiTheme({});
+
   const app = sheet.collectStyles(
     <div id="react-root">
       <JssProvider
@@ -55,9 +60,11 @@ const renderApp = async ({
         <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
           <Provider store={store}>
             <ApolloProvider client={client}>
-              <ConnectedRouter history={history}>
+              {/* <ConnectedRouter history={history}> */}
+              <StaticRouter>
                 <Routes />
-              </ConnectedRouter>
+                {/* </ConnectedRouter> */}
+              </StaticRouter>
             </ApolloProvider>
           </Provider>
         </MuiThemeProvider>
@@ -65,6 +72,7 @@ const renderApp = async ({
     </div>,
   );
 
+  console.log(app);
   await getDataFromTree(app);
 
   return app;
