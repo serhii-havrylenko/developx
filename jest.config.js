@@ -7,7 +7,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(png|jpg|svg|woff|woff2|ico|css|scss)$':
       '<rootDir>/test/setup/file-mock.ts',
-    // "components(.*)$": "<rootDir>/src/components/$1",
+    '#atom/(.*)$': '<rootDir>/src/components/atom/$1',
   },
   setupFiles: ['<rootDir>/test/shim.ts'],
   setupTestFrameworkScriptFile: '<rootDir>/test/enzyme.ts',

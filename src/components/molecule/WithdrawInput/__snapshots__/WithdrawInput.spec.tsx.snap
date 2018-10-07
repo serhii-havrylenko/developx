@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WithdrawInput /> tests should match snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 > * {
+  -webkit-align-self: normal;
+  -ms-flex-item-align: normal;
+  align-self: normal;
+}
+
+.c0 > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+<WithdrawInput
+  amountRef={
+    Object {
+      "current": null,
+    }
+  }
+  onWithdrawClick={[MockFunction]}
+>
+  <styled.div>
+    <div
+      className="c0"
+    >
+      <TextField
+        inputRef={
+          Object {
+            "current": null,
+          }
+        }
+        label="Amount"
+        required={false}
+        select={false}
+        type="number"
+        variant="standard"
+      />
+      <Button
+        onClick={[MockFunction]}
+      >
+        <WithStyles(Button)
+          color="primary"
+          onClick={[MockFunction]}
+        />
+      </Button>
+    </div>
+  </styled.div>
+</WithdrawInput>
+`;
+
+exports[`<WithdrawInput /> tests should match snapshot 2`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 > * {
+  -webkit-align-self: normal;
+  -ms-flex-item-align: normal;
+  align-self: normal;
+}
+
+.c0 > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+<WithdrawInput
+  amountRef={
+    Object {
+      "current": null,
+    }
+  }
+  onWithdrawClick={[MockFunction]}
+>
+  <styled.div>
+    <div
+      className="c0"
+    >
+      <TextField
+        inputRef={
+          Object {
+            "current": null,
+          }
+        }
+        label="Amount"
+        required={false}
+        select={false}
+        type="number"
+        variant="standard"
+      />
+      <Button
+        onClick={[MockFunction]}
+      >
+        <WithStyles(Button)
+          color="primary"
+          onClick={[MockFunction]}
+        />
+      </Button>
+    </div>
+  </styled.div>
+</WithdrawInput>
+`;

@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MenuList /> tests should match snapshot 1`] = `
+.c1.c1 {
+  color: #fff;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c0 > a {
+  color: #fff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c0 > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+<MenuList
+  items={
+    Array [
+      Object {
+        "title": "Home",
+        "to": "/home",
+      },
+      Object {
+        "title": "FAQ",
+        "to": "/faq",
+      },
+    ]
+  }
+>
+  <styled.div>
+    <div
+      className="c0"
+    >
+      <NavLink
+        key="0"
+        to="/home"
+      >
+        <div>
+          <Styled(MenuItem)>
+            <MenuItem
+              className="c1"
+            >
+              <WithStyles(Typography)
+                color="inherit"
+                noWrap={false}
+                variant="title"
+              />
+            </MenuItem>
+          </Styled(MenuItem)>
+        </div>
+      </NavLink>
+      <NavLink
+        key="1"
+        to="/faq"
+      >
+        <div>
+          <Styled(MenuItem)>
+            <MenuItem
+              className="c1"
+            >
+              <WithStyles(Typography)
+                color="inherit"
+                noWrap={false}
+                variant="title"
+              />
+            </MenuItem>
+          </Styled(MenuItem)>
+        </div>
+      </NavLink>
+    </div>
+  </styled.div>
+</MenuList>
+`;

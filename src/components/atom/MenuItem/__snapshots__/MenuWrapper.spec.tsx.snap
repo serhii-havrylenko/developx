@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MenuItem /> tests should match snapshot 1`] = `
+.c0.c0 {
+  color: #fff;
+}
+
+<Styled(MenuItem)>
+  <MenuItem
+    className="c0"
+  >
+    <WithStyles(Typography)
+      color="inherit"
+      noWrap={false}
+      variant="title"
+    />
+  </MenuItem>
+</Styled(MenuItem)>
+`;
