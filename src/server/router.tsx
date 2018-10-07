@@ -1,9 +1,3 @@
-import createMemoryHistory from 'history/createMemoryHistory';
-import fetch from 'isomorphic-fetch';
-import * as React from 'react';
-import Helmet from 'react-helmet';
-import JssProvider from 'react-jss/lib/JssProvider';
-
 import {
   createGenerateClassName,
   createMuiTheme,
@@ -14,12 +8,16 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { Request, Response } from 'express';
 import { History } from 'history';
+import createMemoryHistory from 'history/createMemoryHistory';
+import fetch from 'isomorphic-fetch';
+import * as React from 'react';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { renderToNodeStream } from 'react-dom/server';
+import Helmet from 'react-helmet';
 import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 import { Provider } from 'react-redux';
 import { ConnectedRouter, push } from 'react-router-redux';
-// import { push } from 'react-router-redux';
 import { Store } from 'redux';
 import { ServerStyleSheet } from 'styled-components';
 

@@ -8,7 +8,7 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import rootReducer from '#store/reducers';
+import rootReducer, { State } from '#store/reducers';
 
 const initial = {};
 
@@ -18,10 +18,7 @@ const initial = {};
  * @param  history      redux router history middleware
  * @return              configured store
  */
-const configure = (
-  initialState: object = initial,
-  history: History,
-): Store<{}> => {
+const configure = (initialState = initial, history: History): Store<State> => {
   let middleware = history && applyMiddleware(routerMiddleware(history), thunk);
 
   if (middleware && process.env.NODE_ENV === 'development') {

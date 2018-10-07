@@ -23,17 +23,19 @@
       "#atom/*": ["src/components/atom/*"],
       "#molecule/*": ["src/components/molecule/*"],
       "#organism/*": ["src/components/organism/*"],
-      "#page/*": ["src/components/page/*"],
+      "#pages/*": ["src/components/pages/*"],
+      "#pages": ["src/components/pages"],
       "#template/*": ["src/components/template/*"],
       "#constants/*": ["src/constants/*"],
       "#containers/*": ["src/containers/*"],
       "#components/*": ["src/components/*"],
       "#public/*": ["public/*"],
-      "#app/*": ["src/*"],
+      "#server": ["src/server/*"],
       "#store": ["src/store"],
       "#store/*": ["src/store/*"],
       "#hoc/*": ["src/hoc/*"],
-      "#env": ["src/environment"]
+      "#env": ["src/environment"],
+      "#app/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/*"],

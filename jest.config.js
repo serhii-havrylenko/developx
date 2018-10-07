@@ -3,19 +3,13 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
   },
   testRegex: '(\\.(test|spec))\\.(ts|tsx|js)$',
-  moduleFileExtensions: [
-    'js',
-    'ts',
-    'tsx',
-    'json',
-    'node',
-  ],
+  moduleFileExtensions: ['js', 'ts', 'tsx', 'json', 'node'],
   moduleNameMapper: {
-    '\\.(png|jpg|svg|woff|woff2|ico|css|scss)$': '<rootDir>/test/setup/file-mock.ts',
+    '\\.(png|jpg|svg|woff|woff2|ico|css|scss)$':
+      '<rootDir>/test/setup/file-mock.ts',
+    // "components(.*)$": "<rootDir>/src/components/$1",
   },
-  setupFiles: [
-    '<rootDir>/test/shim.ts',
-  ],
+  setupFiles: ['<rootDir>/test/shim.ts'],
   setupTestFrameworkScriptFile: '<rootDir>/test/enzyme.ts',
   collectCoverageFrom: [
     'src/**/*.ts',
@@ -30,11 +24,6 @@ module.exports = {
     '<rootDir>/dist/',
     '/__snapshots__/',
   ],
-  snapshotSerializers: [
-    'enzyme-to-json/serializer',
-  ],
-  roots: [
-    'src',
-    'test',
-  ],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
+  roots: ['src', 'test'],
 };

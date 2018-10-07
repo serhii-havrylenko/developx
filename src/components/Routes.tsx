@@ -2,14 +2,15 @@
  * Routes.tsx
  * define application routing
  */
-import Application from '#components/App';
-import * as Pages from '#components/loader';
 import { Location } from 'history';
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
+import Application from '#components/App';
+import * as Pages from '#pages';
 
 interface StateMap {
   router: { location?: Location };
@@ -31,7 +32,7 @@ const Routes: React.SFC = () => (
       <ConnectedSwitch>
         <Route exact={true} path="/" component={Pages.HomePage} />
         <Route path="/home" component={Pages.HomePage} />
-        <Route path="/sample" component={Pages.SamplePage} />
+        <Route path="/faq" component={Pages.FAQPage} />
         <Route path="*" component={Pages.NotFoundPage} />
       </ConnectedSwitch>
     </Application>

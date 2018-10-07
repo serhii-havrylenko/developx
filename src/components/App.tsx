@@ -1,6 +1,4 @@
-// import { default as gql } from 'graphql-tag';
 import * as React from 'react';
-// import { graphql } from 'react-apollo';
 import Helmet from 'react-helmet';
 import { compose } from 'recompose';
 
@@ -14,12 +12,6 @@ import Assignment from '@material-ui/icons/Assignment';
 import withStyle from '#components/App.sc';
 import withCleanup from '#hoc/withCleanup';
 import MenuList from '#molecule/MenuList';
-
-// const query = gql`
-//   query Query {
-//     hello
-//   }
-// `;
 
 interface AppProps {
   className?: string;
@@ -84,10 +76,8 @@ const App: React.SFC<AppProps> = ({ children, className, classes }) => (
   </div>
 );
 
-// const withGql = graphql(query);
 export default compose<AppProps, Partial<AppProps>>(
   withCleanup,
-  // withGql,
   withStyle,
   withStyles(styles),
 )(App);

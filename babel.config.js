@@ -18,6 +18,7 @@ module.exports = (env) => {
     ],
     plugins: [
       'lodash',
+      '@babel/plugin-proposal-class-properties',
       ['babel-plugin-styled-components', { ssr: true }],
       ['babel-plugin-webpack-alias', { config: './webpack.config.resolve.js' }],
       '@babel/transform-runtime',

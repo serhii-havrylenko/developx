@@ -1,5 +1,4 @@
-import styledComponents, { injectGlobal } from 'styled-components';
-const styled = styledComponents;
+import styled, { injectGlobal } from 'styled-components';
 
 injectGlobal`
   body {
