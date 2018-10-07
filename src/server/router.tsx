@@ -30,7 +30,7 @@ import configureStore from '#store';
 const stringify = (field: string, obj: object) =>
   `window.${field}=${JSON.stringify(obj).replace(/</g, '\\u003c')};`;
 
-interface IRenderAppArgs {
+interface RenderAppArgs {
   client: ApolloClient<{}>;
   history: History;
   sheet: ServerStyleSheet;
@@ -44,9 +44,7 @@ const renderApp = async ({
   history,
   client,
   sheetsRegistry,
-}: IRenderAppArgs): Promise<
-  React.ReactElement<{ sheet: ServerStyleSheet }>
-> => {
+}: RenderAppArgs): Promise<React.ReactElement<{ sheet: ServerStyleSheet }>> => {
   const generateClassName = createGenerateClassName();
   const theme = createMuiTheme({});
 

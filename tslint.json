@@ -14,8 +14,10 @@
       "avoid-template",
       "jsx-double"
     ],
+    "interface-name": [true, "never-prefix"],
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
     "no-unused-expression": [
       true,
       "allow-fast-null-checks",

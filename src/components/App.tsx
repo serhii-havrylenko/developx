@@ -9,12 +9,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { Theme, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Menu from '@material-ui/icons/Menu';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import Assignment from '@material-ui/icons/Assignment';
 
 import withStyle from '#components/App.sc';
 import withCleanup from '#hoc/withCleanup';
+import MenuList from '#molecule/MenuList';
 
 // const query = gql`
 //   query Query {
@@ -22,7 +21,7 @@ import withCleanup from '#hoc/withCleanup';
 //   }
 // `;
 
-interface IAppProps {
+interface AppProps {
   className?: string;
   classes: { [key: string]: string };
   data: { hello: string };
@@ -54,24 +53,12 @@ const styles = (theme: Theme) => ({
   },
 });
 
-const HeaderNavWrapper = styled.div`
-  display: flex;
-  flex: 1;
-
-  & > a {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  & > *:not(:first-child) {
-    margin-left: 10px;
-  }
-`;
+const items = [{ title: 'Home', to: '/home' }, { title: 'FAQ', to: '/faq' }];
 
 /**
  * Application viewport component
  */
-const App: React.SFC<IAppProps> = ({ children, className, classes }) => (
+const App: React.SFC<AppProps> = ({ children, className, classes }) => (
   <div className={className}>
     <Helmet>
       <title>DevelopX sample</title>
@@ -80,7 +67,7 @@ const App: React.SFC<IAppProps> = ({ children, className, classes }) => (
     <AppBar position="static" className={classes.toolbar}>
       <Toolbar>
         <IconButton color="inherit" aria-label="Menu">
-          <Menu />
+          <Assignment />
         </IconButton>
         <Typography
           variant="title"
@@ -89,23 +76,7 @@ const App: React.SFC<IAppProps> = ({ children, className, classes }) => (
         >
           DevelopX
         </Typography>
-        <HeaderNavWrapper>
-          <NavLink to="/home" activeClassName={classes.activeNavLink}>
-            <Typography variant="title" color="inherit" noWrap={false}>
-              Home
-            </Typography>
-          </NavLink>
-          <NavLink to="/sample">
-            <Typography
-              variant="title"
-              noWrap={false}
-              color="inherit"
-              className={classes.navLink}
-            >
-              FAQ
-            </Typography>
-          </NavLink>
-        </HeaderNavWrapper>
+        <MenuList items={items} />
       </Toolbar>
     </AppBar>
     <main className={classes.layout}>{children}</main>
@@ -114,7 +85,7 @@ const App: React.SFC<IAppProps> = ({ children, className, classes }) => (
 );
 
 // const withGql = graphql(query);
-export default compose<IAppProps, Partial<IAppProps>>(
+export default compose<AppProps, Partial<AppProps>>(
   withCleanup,
   // withGql,
   withStyle,

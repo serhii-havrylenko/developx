@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-interface IStateMap {
+interface StateMap {
   router: { location?: Location };
 }
 
-const switchMapState = ({ router: { location } }: IStateMap) => ({ location });
+const switchMapState = ({ router: { location } }: StateMap) => ({ location });
 
 const ConnectedSwitch = connect(
   switchMapState,
